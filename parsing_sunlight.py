@@ -6,6 +6,8 @@ import re
 import json
 import datetime
 import os
+from classes_parsing import Dlinks
+
 
 
 def mysoup(urls):
@@ -46,7 +48,7 @@ def load_links(taskname, taskdescr):
 
 def parcing(links):
 
-    for i in range(3):  # links)):
+    for i in range(3000, len(links)):
         try:
             row = len(data)
             urlcard = domain + links[i]
@@ -94,11 +96,17 @@ def byrepost():
 
 
 
-taskname, taskdescr = 'бескаменка300822', 'все БК  8810'
-domain = f'https://sunlight.net'
-links = load_links(taskname, taskdescr)
+#taskname, taskdescr = 'бескаменка300822', 'все БК  8810'
+#domain = f'https://sunlight.net'
+#links = load_links(taskname, taskdescr)
 #print(links)
 data = pd.DataFrame(columns=['h1', 'art', 'price', 'price2', 'gold', 'gold2', 'weight', 'gems', 'gems2', 'url'])
+olinks = Dlinks()
+links = olinks.load()
+taskname, taskdescr, domain = olinks.taskname, olinks.taskdescr, olinks.domain
+
+resfolder = 'results'
 parcing(links)
-print(data)
+data.to_csv(resfolder+'/'+olinks.taskname+olinks.datestr+'.csv')
+
 
