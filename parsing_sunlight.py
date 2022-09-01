@@ -48,7 +48,8 @@ def load_links(taskname, taskdescr):
 
 def parcing(links):
 
-    for i in range( len(links)-5, len(links)):
+    print('парсинг  ', len(links))
+    for i in range(1200,len(links)):
         try:
             row = len(data)
             urlcard = domain + links[i]
@@ -73,6 +74,9 @@ def parcing(links):
         except IndexError:
             print('indexerror len of = ', len(card.find_all('div', 'detail__item-option')))
         print(i, urlcard)
+        if i/100 in range(100000000):
+            data.to_csv(resfolder + '/' + olinks.taskname + olinks.datestr + '.csv')
+            print('saved', i)
 
 
 def byrepost(data):
