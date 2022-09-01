@@ -1,5 +1,5 @@
 class Dlinks():
-    '''taskname, links, urls, domain, taskdescr, datestr=None'''
+    '''v0001 save(self, taskname, links, urls, domain, taskdescr, datestr=None)'''
 
     folderlinks = 'links/'
 
@@ -12,20 +12,21 @@ class Dlinks():
         self.urls = urls
         self.domain = domain
         self.taskdescr = taskdescr
-        if datestr:
+        print(datestr,'now:', datetime.datetime.now().strftime('%Y-%m-%d-%H-%M') )
+        if datestr == None:
             self.datestr = datetime.datetime.now().strftime('%Y-%m-%d-%H-%M')
         else:
             self.datestr = datestr
-        dlinks = {'taskname': taskname,
-                  'links': links,
-                  'datestr': datestr,
-                  'urls': urls,
-                  'domain': domain,
-                  'taskdescr': taskdescr}
+        dlinks = {'taskname': self.taskname,
+                  'links': self.links,
+                  'datestr': self.datestr,
+                  'urls': self.urls,
+                  'domain': self.domain,
+                  'taskdescr': self.taskdescr}
 
-        with open(self.folderlinks + 'dlinks_' + self.taskname + '_' + datestr + '.json', 'w') as writefile:
+        with open(self.folderlinks + 'dlinks_' + self.taskname + '_' + self.datestr + '.json', 'w') as writefile:
             json.dump(dlinks, writefile)
-        print('линки записаны: ', self.folderlinks + 'dlinks_' + self.taskname + '_' + datestr + '.json')
+            print('линки записаны: ', self.folderlinks + 'dlinks_' + self.taskname + '_' + self.datestr + '.json')
 
     def load(self):
         import datetime
