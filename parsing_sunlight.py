@@ -48,7 +48,7 @@ def load_links(taskname, taskdescr):
 
 def parcing(links):
 
-    for i in range(3000, len(links)):
+    for i in range( len(links)-5, len(links)):
         try:
             row = len(data)
             urlcard = domain + links[i]
@@ -75,7 +75,7 @@ def parcing(links):
         print(i, urlcard)
 
 
-def byrepost():
+def byrepost(data):
     def gold(t, patt):
         f = re.search(patt, t)
         return f.group() if f else 're не найдено'
@@ -107,6 +107,7 @@ taskname, taskdescr, domain = olinks.taskname, olinks.taskdescr, olinks.domain
 
 resfolder = 'results'
 parcing(links)
+byrepost(data)
 data.to_csv(resfolder+'/'+olinks.taskname+olinks.datestr+'.csv')
 
 
