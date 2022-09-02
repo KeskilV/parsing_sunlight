@@ -49,11 +49,13 @@ def load_links(taskname, taskdescr):
 def parcing(links):
 
     print('парсинг  ', len(links))
-    for i in range(1200,len(links)):
+    for i in range(13140,len(links)):
         try:
-            row = len(data)
+            row = i#len(data)
             urlcard = domain + links[i]
-            card = mysoup(urlcard)
+            response = requests.get(urlcard)
+            card = BeautifulSoup(response.text, 'lxml')
+            #card = mysoup(urlcard)
             data.loc[row, 'url'] = urlcard
             data.loc[row, 'h1'] = card.find("h1").text.strip()
             data.loc[row, 'art'] = card.find('div', class_="supreme-product-card__product-article-text").text.strip()
@@ -72,9 +74,12 @@ def parcing(links):
         except (AttributeError, TypeError) as e:
             print('error', e)
         except IndexError:
-            print('indexerror len of = ', len(card.find_all('div', 'detail__item-option')))
+            print('IndexError')
+        except Exception as e:
+            print('ошибка:', e)
+            input('жду')
         print(i, urlcard)
-        if i/100 in range(100000000):
+        if i%100 == 0:
             data.to_csv(resfolder + '/' + olinks.taskname + olinks.datestr + '.csv')
             print('saved', i)
 
