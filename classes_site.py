@@ -55,36 +55,41 @@ class Site():
             i+=1
         task.dict['links'] = links
         
-        
-        
-    def parcing(self, task):
+
+
+    def parcing(self, task, linknum0=None, linknum=None):
         def savereserve_csv(data):
             datestr = datetime.datetime.now().strftime('%Y-%m-%d-%H-%M')
             filename = self.folderres + '/_reserve_' + task.dict['name'] + datestr + '.csv'
             data.to_csv(filename)
             return filename
-        
-            
-        data = pd.DataFrame(columns=['h1','art','price','price2','gold','gold2','weight','gems','gems2','url'])
+
+        data = pd.DataFrame(columns=['h1', 'art', 'price', 'price2', 'gold', 'gold2', 'weight', 'gems', 'gems2', 'url'])
         domain = task.dict['domain']
-        links = task.dict['links']               
-        print('парсинг  ', len(links))
-        for i in range(0,len(links)):
+        links = task.dict['links']
+        print('парсинг  total ', len(links))
+        num0 = 0 if linknum0==None else linknum0
+        num = len(links) if linknum==None else linknum
+        print(num0,'--->', num)
+        for i in range(num0, num):
             try:
                 row = i
                 urlcard = domain + links[i]
                 response = requests.get(urlcard)
                 card = BeautifulSoup(response.text, 'lxml')
-                #card = mysoup(urlcard)
+                # card = mysoup(urlcard)
                 data.loc[row, 'url'] = urlcard
                 data.loc[row, 'h1'] = card.find("h1").text.strip()
-                data.loc[row, 'art'] = card.find('div', class_="supreme-product-card__product-article-text").text.strip()
+                data.loc[row, 'art'] = card.find('div',
+                                                 class_="supreme-product-card__product-article-text").text.strip()
                 data.loc[row, 'price'] = card.find('div',
                                                    class_="supreme-product-card__price-discount-price").text.strip().replace(
                     '\u202f', '').replace('\xa0', '')
-                data.loc[row, 'price2'] = card.find('div', class_="supreme-product-card__price-old").text.strip().replace(
+                data.loc[row, 'price2'] = card.find('div',
+                                                    class_="supreme-product-card__price-old").text.strip().replace(
                     '\u202f', '').replace('\xa0', '')
-                a = card.find_all('p', class_="supreme-product-card__description supreme-product-card__description_default")
+                a = card.find_all('p',
+                                  class_="supreme-product-card__description supreme-product-card__description_default")
                 data.loc[row, 'gold'] = ';'.join([x.text for x in a])
                 data.loc[row, 'd1'] = "&".join(
                     [t.text for t in card.find_all('span', class_="supreme-product-card-description__item-text")])
@@ -99,15 +104,12 @@ class Site():
                 print('ошибка:', e)
                 input('жду')
             print(i, urlcard)
-            if i%100 == 0:
+            if i % 100 == 0:
                 print('saved', i, savereserve_csv(data))
-            
+
         lastfile = savereserve_csv(data)
         print('saved last', i, lastfile)
         task.dict['datestr'] = datetime.datetime.now().strftime('%Y-%m-%d-%H-%M')
         task.dict['parcing'] = lastfile
         return data
-
-
-
       
