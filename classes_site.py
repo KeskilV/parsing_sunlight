@@ -11,7 +11,7 @@ import pandas as pd
 
 
 class Site():
-    '''v0003'''
+    '''v0003 for sunlite '''
     folderres = 'results/'
     
     def __init__(self):
