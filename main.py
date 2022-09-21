@@ -9,7 +9,7 @@ import pandas as pd
 
 from classes_dict import Dtask, Dicts
 from classes_site import Site
-
+'''
 dtask = {'name': 'ALROSA_diamonds',
          'domain': 'https://sunlight.net/',
          # 'links':[],
@@ -24,7 +24,7 @@ dtask = {'name': 'SL_diamonds',
          'urls0': 'https://sunlight.net/catalog/diamonds-all.html',
          'urlslast': 'https://sunlight.net/catalog/diamonds-all/page-104/',
          'descr': ''}
-'''
+
 task = Dtask(dtask)
 #task.load()
 task.print()

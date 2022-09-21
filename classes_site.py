@@ -112,4 +112,35 @@ class Site():
         task.dict['datestr'] = datetime.datetime.now().strftime('%Y-%m-%d-%H-%M')
         task.dict['parcing'] = lastfile
         return data
-      
+
+class Site_alrosa(Site):
+    def getlinks_alrosa(self, urls):
+        quotes = self.mysoup(urls).find_all('a', class_="product-card__dia21__image-container")
+        res = [q.get("href") for q in quotes]
+        print(len(res), 'links is ready ', res[0], '...', res[-1])
+        return res
+
+    def genlinks_alrosa(self, task):
+        '''task: classes_parsing.Dtask'''
+        yield task.dict['urls0']
+        # 'urlslast':'https://sunlight.net/catalog/diamonds-all/page-104/'
+        text = task.dict['urlslast'].strip().split('/')[-2]
+        n = int(re.search(r'\d+', text)[0])
+        ch = text[re.search(r'\d+', text).span()[0] - 1]
+        urls = '/'.join(task.dict['urlslast'].strip().split('/')[0:-2])
+        for i in range(2, n):
+            pages = f'/pagen{ch}{i}/'
+            # pages = f'&page={i}'#без вставки
+            yield urls + pages
+
+    def getlinks(self, task) -> None:  #
+        '''create list links and modify object task'''
+        genlink = self.genlinks_alrosa(task)
+        links = []
+        i = 0
+        for l in genlink:
+            print(i, l)
+            links += self.getlinks_alrosa(l)
+            i += 1
+        task.dict['links'] = links
+
