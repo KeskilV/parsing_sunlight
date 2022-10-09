@@ -51,3 +51,5 @@ dtask = {'name': 'ALROSA_diamonds_test-3',
          'urls0': 'https://alrosadiamond.ru/diamonds/',
          'urlslast': 'https://alrosadiamond.ru/diamonds/pagen_3/',
          'descr': 'тестовый'}
+# Tests
+001 - тест класса Dtask 
