@@ -12,12 +12,12 @@
 Родителький класс для описания, логирования и сохранения результатов 
   - атрибут папка для сохранения folderlog = 'folder/' 
   - init требует словарь вида:
-  dtask = {'name': 'ALROSA_diamonds_test-3',
-           'domain': 'https://sunlight.net/',
-           'links':[],
-           'urls0': 'https://alrosadiamond.ru/diamonds/',
-           'urlslast': 'https://alrosadiamond.ru/diamonds/pagen_3/',
-           'descr': 'тестовый'}
+  dtask ={'name': 'SL_diamonds',
+         'domain': 'https://sunlight.net/',
+         # 'links':[],
+         'urls0': 'https://sunlight.net/catalog/diamonds-all.html',
+         'urlslast': 'https://sunlight.net/catalog/diamonds-all/page-104/',
+         'descr': ''}
   - save для сохранения словаря
   - load для загрузки
   
@@ -43,4 +43,11 @@
 задачи по полученным линкам, настроен на sunlight, сохраняет пром перзультаты в папку результаты
 
 ## class Site_alrosa(Site)
-Класс дочерний с переопределением методов с учетм специфики парсинга для алроса
+Класс дочерний с переопределением методов с учетом специфики парсинга для алроса
+Пример словаря задач:
+dtask = {'name': 'ALROSA_diamonds_test-3',
+         'domain': 'https://alrosadiamond.ru/',
+         # 'links':[],
+         'urls0': 'https://alrosadiamond.ru/diamonds/',
+         'urlslast': 'https://alrosadiamond.ru/diamonds/pagen_3/',
+         'descr': 'тестовый'}

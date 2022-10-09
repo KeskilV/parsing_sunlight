@@ -11,7 +11,7 @@ from classes_dict import Dtask, Dicts
 from classes_site import *
 
 dtask = {'name': 'ALROSA_diamonds_test-3',
-         'domain': 'https://sunlight.net/',
+         'domain': 'https://alrosadiamond.ru/',
          # 'links':[],
          'urls0': 'https://alrosadiamond.ru/diamonds/',
          'urlslast': 'https://alrosadiamond.ru/diamonds/pagen_3/',
