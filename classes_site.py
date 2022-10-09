@@ -29,7 +29,6 @@ class Site():
         print(len(res), 'links is ready ' , res[0], '...', res[-1])
         return res
         
-        
     def genlinks_sunl(self, task):
         '''task: classes_parsing.Dtask'''
         yield task.dict['urls0']

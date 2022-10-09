@@ -24,11 +24,23 @@
 ## class Dtask(Dicts):
 Дочерний класс для задач
 - атрибут папка для сохранения folderlog =  'tasklogs/'
-- print для легкой печати словара задачи без ключа links
+- print для легкой печати словаря задачи без ключа links
    
-# parsing_sunlight # 
+# classes_site
+Файл с классами для парсинга
 
-file main, Class Site()
+## class Site():
+Класс для парсинга sunlite
+- атрибут папки для результатов folderres = 'results/'
+- init не требует входных параметоров
+- genlinks_sunl(task:class Dtask) генерирует ссылки на листы с карточками при заданной в 
+словаре задач первой странице и последней: (пример)
+    'urls0': 'https://alrosadiamond.ru/diamonds/',
+    'urlslast': 'https://alrosadiamond.ru/diamonds/pagen_3/'
+- getlinks(task:class Dtask)->None принимает словарь задач, добавляет в словарь 
+полученные линки
+- parcing(self, task:class Dtask, linknum0=None, linknum=None) парсинг по словарю
+задачи по полученным линкам, настроен на sunlight, сохраняет пром перзультаты в папку результаты
 
-# parcing ALROSA
-file main_alrosa, Class Site_alrosa()
+## class Site_alrosa(Site)
+Класс дочерний с переопределением методов с учетм специфики парсинга для алроса
