@@ -1,0 +1,1 @@
+print(f'{__name__}ghg({3})')
