@@ -18,7 +18,7 @@ class Dicts():
             self.name = dct['name']+ datetime.datetime.now().strftime('%Y-%m-%d-%H-%M')
         else:
             self.name = 'name'+ datetime.datetime.now().strftime('%Y-%m-%d-%H-%M')
-        self.dict['name']=self.name
+        self.dict['name'] = self.name
         print('установка :', self.name )
 
     def check(self):
