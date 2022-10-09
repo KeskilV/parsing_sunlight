@@ -37,5 +37,22 @@ class TestDtask(unittest.TestCase):
         self.assertEqual(len(control_dtask2), len(task.dict))  # add assertion here
 
 
+class TestSite(unittest.TestCase):
+    def getlinks(self):
+        dtask = {'name': 'ALROSA_diamonds_test-3',
+                 'domain': 'https://alrosadiamond.ru/',
+                 # 'links':[],
+                 'urls0': 'https://alrosadiamond.ru/diamonds/',
+                 'urlslast': 'https://alrosadiamond.ru/diamonds/pagen_3/',
+                 'descr': 'тестовый'}
+        task = Dtask(dtask)
+        # task.load()
+        site = Site_alrosa()
+        site.getlinks(task)
+        task.save()
+        self.assertEqual(True, True)  # add assertion here
+
+
+
 if __name__ == '__main__':
     unittest.main()
