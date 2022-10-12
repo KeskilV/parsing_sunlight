@@ -4,6 +4,7 @@
 переносится на этот проект для последующих использований и модификаций с отработкой OOP SOLID Test driven devolopments
 
 # блокнот parsing_alrosa_develop 
+https://github.com/KeskilV/parsing_sunlight/blob/main/jupyter_notebook/parsing_alrosa/parsing_alrosa_develop.ipynb
  в папке jupyter_notebook для разработки кода парсера, тестов для переноса в стабильную версию Pycharm Содержание блоков:
 
 BLOCK to/from Pycharm - готовые и разрабатываемые блоки для переноса
