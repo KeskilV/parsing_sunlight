@@ -10,6 +10,9 @@ BLOCK to/from Pycharm - готовые и разрабатываемые бло�
 TESTS тесты
 DEVELOP - разработка
 
+![image](https://user-images.githubusercontent.com/56883869/195226245-55b53334-19b4-4372-ad9c-8a6d70cad56a.png)
+
+
 # Installation
 На данном этапе не требуется
 
